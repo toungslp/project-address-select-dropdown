@@ -96,7 +96,7 @@
                         ບ້ານ <span class="text-red-500 ml-1">*</span>
                     </label>
                     <div class="select-wrapper">
-                        <select id="village" required disabled
+                        <select id="village" required
                             class="w-full px-4 py-3 pr-10 bg-gray-50 border border-gray-200 rounded-xl text-gray-700 focus:outline-none focus:border-indigo-500 focus:bg-white transition-all appearance-none cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed">
                             <option value="">-- ກະລຸນາເລືອກບ້ານ --</option>
                         </select>
@@ -148,6 +148,7 @@
 <script>
     $(document).ready(function(){
         //alert("hello wordl");
+        //load data district
         $("#province").change(function(){
             let pr_id = $(this).val();
             //alert(pr_id);
@@ -164,6 +165,13 @@
                     
                 }
             });
+        });
+        //load data village
+        $("#district").change(function(){
+            // alert("test district change");
+            let dr_id = $(this).val();
+            console.log(dr_id);
+            
         });
     });
 </script>
