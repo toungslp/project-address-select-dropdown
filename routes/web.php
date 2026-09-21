@@ -10,3 +10,7 @@ use App\Http\Controllers\HomeController;
 Route::get('/',[HomeController::class,'index'])->name('home');
 
 Route::get('/get-district',[HomeController::class,'getDistrict']);
+Route::get('/get-village',[HomeController::class,'getVillage']);
+
+
+Route::resource('customer',App\Http\Controllers\CustomerController::class);

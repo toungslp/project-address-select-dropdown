@@ -50,8 +50,19 @@
 
         <!-- Form Card -->
         <div class="bg-white rounded-2xl card-shadow p-6 md:p-10">
-            <form id="addressForm" class="space-y-6">
-                
+            <form id="addressForm" class="space-y-6" action="{{ route('customer.store') }}" method="POST">
+                @csrf
+                <!-- User Name -->
+                <div>
+                    <label class="flex items-center text-sm font-semibold text-gray-700 mb-2">
+                        <svg class="w-5 h-5 mr-2 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                        </svg>
+                        ຊື່ ແລະ ນາມສະກຸນ
+                    </label>
+                    <input type="text" placeholder="ຊື່ ແລະ ນາມສະກຸນ"
+                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-700 placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:bg-white transition-all" name="user_name">
+                </div>
                 <!-- Province -->
                 <div>
                     <label class="flex items-center text-sm font-semibold text-gray-700 mb-2">
@@ -62,7 +73,7 @@
                     </label>
                     <div class="select-wrapper">
                         <select id="province" required
-                            class="w-full px-4 py-3 pr-10 bg-gray-50 border border-gray-200 rounded-xl text-gray-700 focus:outline-none focus:border-indigo-500 focus:bg-white transition-all appearance-none cursor-pointer">
+                            class="w-full px-4 py-3 pr-10 bg-gray-50 border border-gray-200 rounded-xl text-gray-700 focus:outline-none focus:border-indigo-500 focus:bg-white transition-all appearance-none cursor-pointer" name="province">
                             <option value="">-- ກະລຸນາເລືອກແຂວງ --</option>
                             @foreach($province as $item)
                                 <option value="{{ $item->pr_id }}">{{ $item->pr_name }}</option>
@@ -81,7 +92,7 @@
                     </label>
                     <div class="select-wrapper">
                         <select id="district" required
-                            class="w-full px-4 py-3 pr-10 bg-gray-50 border border-gray-200 rounded-xl text-gray-700 focus:outline-none focus:border-indigo-500 focus:bg-white transition-all appearance-none cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed">
+                            class="w-full px-4 py-3 pr-10 bg-gray-50 border border-gray-200 rounded-xl text-gray-700 focus:outline-none focus:border-indigo-500 focus:bg-white transition-all appearance-none cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed" name="district">
                             <option value="">-- ກະລຸນາເລືອກເມືອງ --</option>
                         </select>
                     </div>
@@ -96,9 +107,9 @@
                         ບ້ານ <span class="text-red-500 ml-1">*</span>
                     </label>
                     <div class="select-wrapper">
-                        <select id="village" required
-                            class="w-full px-4 py-3 pr-10 bg-gray-50 border border-gray-200 rounded-xl text-gray-700 focus:outline-none focus:border-indigo-500 focus:bg-white transition-all appearance-none cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed">
-                            <option value="">-- ກະລຸນາເລືອກບ້ານ --</option>
+                        <select id="village"
+                            class="w-full px-4 py-3 pr-10 bg-gray-50 border border-gray-200 rounded-xl text-gray-700 focus:outline-none focus:border-indigo-500 focus:bg-white transition-all appearance-none cursor-pointer disabled:opacity-60" name="village">
+                            <option value=''>-- ກະລຸນາເລືອກບ້ານ --</option>
                         </select>
                     </div>
                 </div>
@@ -112,7 +123,7 @@
                         ທີ່ຢູ່ລະອຽດ (ເລກເຮືອນ, ຖະໜົນ...)
                     </label>
                     <input type="text" placeholder="ເຊັ່ນ: ເລກເຮືອນ 123, ຖະໜົນລ້ານຊ້າງ"
-                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-700 placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:bg-white transition-all">
+                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-700 placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:bg-white transition-all" name="street_address">
                 </div>
 
                 <!-- Summary -->
@@ -171,7 +182,15 @@
             // alert("test district change");
             let dr_id = $(this).val();
             console.log(dr_id);
-            
+            $.ajax({
+                url:"/get-village",
+                type:"GET",
+                dataType:"text",
+                data:{dr_id:dr_id},
+                success:function(data){
+                    $("#village").html(data);
+                }
+            });
         });
     });
 </script>
