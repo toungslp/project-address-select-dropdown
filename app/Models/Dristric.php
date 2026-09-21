@@ -14,4 +14,8 @@ class Dristric extends Model
     public $incrementing = false;
 
     protected $fillable = ['dr_id','dr_name','dr_name_en','pr_id'];
+
+    public function province(){
+        return $this->belongsTo(Province::class,'pr_id','pr_id');
+    }
 }
