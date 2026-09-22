@@ -7,7 +7,9 @@ use App\Http\Controllers\HomeController;
 // });
 
 
-Route::get('/',[HomeController::class,'index'])->name('home');
+Route::get('/',[App\Http\Controllers\CustomerController::class,'index'])->name('home');
+
+Route::get('/add_customer',[App\Http\Controllers\HomeController::class,'index'])->name('add.customer');
 
 Route::get('/get-district',[HomeController::class,'getDistrict']);
 Route::get('/get-village',[HomeController::class,'getVillage']);

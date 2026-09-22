@@ -46,10 +46,18 @@
             </div>
             <h1 class="text-3xl md:text-4xl font-bold text-white mb-2">ແບບຟອມທີ່ຢູ່</h1>
             <p class="text-indigo-100">ກະລຸນາເລືອກ ແຂວງ, ເມືອງ ແລະ ບ້ານ ຂອງທ່ານ</p>
+            
         </div>
 
         <!-- Form Card -->
         <div class="bg-white rounded-2xl card-shadow p-6 md:p-10">
+            <a href="{{ route('home') }}"
+                class="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white text-sm font-semibold rounded-xl shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path>
+                </svg>
+                <span>Home</span>
+            </a>
             <form id="addressForm" class="space-y-6" action="{{ route('customer.store') }}" method="POST">
                 @csrf
                 <!-- User Name -->
