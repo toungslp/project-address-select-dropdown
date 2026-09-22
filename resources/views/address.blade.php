@@ -61,7 +61,12 @@
                         ຊື່ ແລະ ນາມສະກຸນ
                     </label>
                     <input type="text" placeholder="ຊື່ ແລະ ນາມສະກຸນ"
-                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-700 placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:bg-white transition-all" name="user_name">
+                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-700 placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:bg-white transition-all" name="name_lastname">
+                    <div>
+                        @error('name_lastname')
+                            <span class="text-red-500 text-sm">{{ $message }}</span>
+                        @enderror
+                    </div>
                 </div>
                 <!-- Province -->
                 <div>
@@ -72,13 +77,14 @@
                         ແຂວງ / ນະຄອນຫຼວງ <span class="text-red-500 ml-1">*</span>
                     </label>
                     <div class="select-wrapper">
-                        <select id="province" required
+                        <select id="province"
                             class="w-full px-4 py-3 pr-10 bg-gray-50 border border-gray-200 rounded-xl text-gray-700 focus:outline-none focus:border-indigo-500 focus:bg-white transition-all appearance-none cursor-pointer" name="province">
                             <option value="">-- ກະລຸນາເລືອກແຂວງ --</option>
                             @foreach($province as $item)
                                 <option value="{{ $item->pr_id }}">{{ $item->pr_name }}</option>
                             @endforeach
                         </select>
+                        
                     </div>
                 </div>
 
@@ -91,7 +97,7 @@
                         ເມືອງ <span class="text-red-500 ml-1">*</span>
                     </label>
                     <div class="select-wrapper">
-                        <select id="district" required
+                        <select id="district"
                             class="w-full px-4 py-3 pr-10 bg-gray-50 border border-gray-200 rounded-xl text-gray-700 focus:outline-none focus:border-indigo-500 focus:bg-white transition-all appearance-none cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed" name="district">
                             <option value="">-- ກະລຸນາເລືອກເມືອງ --</option>
                         </select>
@@ -108,9 +114,14 @@
                     </label>
                     <div class="select-wrapper">
                         <select id="village"
-                            class="w-full px-4 py-3 pr-10 bg-gray-50 border border-gray-200 rounded-xl text-gray-700 focus:outline-none focus:border-indigo-500 focus:bg-white transition-all appearance-none cursor-pointer disabled:opacity-60" name="village">
+                            class="w-full px-4 py-3 pr-10 bg-gray-50 border border-gray-200 rounded-xl text-gray-700 focus:outline-none focus:border-indigo-500 focus:bg-white transition-all appearance-none cursor-pointer disabled:opacity-60" name="vill_id">
                             <option value=''>-- ກະລຸນາເລືອກບ້ານ --</option>
                         </select>
+                        <div>
+                            @error('vill_id')
+                            <span class="text-red-500 text-sm">{{ $message }}</span>
+                            @enderror
+                        </div>
                     </div>
                 </div>
 
@@ -124,6 +135,11 @@
                     </label>
                     <input type="text" placeholder="ເຊັ່ນ: ເລກເຮືອນ 123, ຖະໜົນລ້ານຊ້າງ"
                         class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-700 placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:bg-white transition-all" name="street_address">
+                    <div>
+                        @error('street_address')
+                        <span class="text-red-500 text-sm">{{ $message }}</span>
+                        @enderror
+                    </div>
                 </div>
 
                 <!-- Summary -->
